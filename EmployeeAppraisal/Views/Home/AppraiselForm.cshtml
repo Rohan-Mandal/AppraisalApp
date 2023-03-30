@@ -1,0 +1,121 @@
+﻿@model Appraisal
+@using EmployeeAppraisal.DesignationEnum;
+
+<section class="vh-50 gradient-custom">
+    
+    <div class="container-fluid py-5 h-60 " "bg-image" 
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+            height: 100%">
+        <div class="row justify-content-center align-items-center h-80">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px" ;>
+                    @*<img src="~/images/ap2.png" class="rounded float-left" width="854px" height="160px" alt="Image not Found">*@
+                    <div class="card-body p-4 p-md-5 ">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">Appraisal Details</h3>
+                        <form asp-action="AddEmployee" asp-controller="Home" method="post">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-outline">
+                                        <input asp-for="DetailID" class="form-control form-control-lg" />
+                                        <label asp-for="DetailID"></label>
+                                        <span asp-validation-for="DetailID" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <input asp-for="AppraisalID" class="form-control form-control-lg" />
+                                        <label asp-for="AppraisalID"></label>
+                                        <span asp-validation-for="AppraisalID" class="text-danger"></span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <select class="form-control form-control-lg" asp-for="EmployeeRating" asp-items="Html.GetEnumSelectList<Erating>()"></select>
+                                        <label asp-for="EmployeeRating" for="MID"></label>
+                                        <span asp-validation-for="EmployeeRating" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <input asp-for="EmployeeComments" class="form-control form-control-lg" />
+                                        <label asp-for="EmployeeComments" for="password"></label>
+                                        <span asp-validation-for="EmployeeComments" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                
+
+                            
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <select class="form-control form-control-lg" asp-for="ManagerRating" asp-items="Html.GetEnumSelectList<Mrating>()"></select>
+                                        <label asp-for="ManagerRating" for="ManagerRating"></label>
+                                        <span asp-validation-for="ManagerRating" class="text-danger"></span>
+                                    </div>
+
+                                </div>                         
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <input asp-for="ManagerComments" class="form-control form-control-lg" />
+                                        <label asp-for="ManagerComments" for="ManageerComments"></label>
+                                        <span asp-validation-for="ManagerComments" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="form-outline col-sm-4">
+                                    <select class="form-control form-control-lg" multiple asp-for="Competency" asp-items="Html.GetEnumSelectList<TechCompetency>()"></select>
+                                    <label class="form-check-label" asp-for="Competency">Competencies</label>
+                                    <span asp-validation-for="Competency" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <input asp-for="Objectives" class="form-control form-control-lg" />
+                                        <label asp-for="Objectives" for="ManageerCo"></label>
+                                        <span asp-validation-for="Objectives" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-4">
+
+                                    <div class="form-outline">
+                                        <input asp-for="EmployeeID" class="form-control form-control-lg" />
+                                        <label asp-for="EmployeeID" for="ManageerCo"></label>
+                                        <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2 text-center">
+                                <input class="btn btn-success btn-lg" type="submit" value="Submit" />
+                                <input class="btn btn-success btn-lg" type="reset" value="Reset" />
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

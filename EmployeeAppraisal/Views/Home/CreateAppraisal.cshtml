@@ -1,0 +1,86 @@
+﻿@model createappraisal
+@using EmployeeAppraisal.DesignationEnum;
+@if(ViewBag.succ !=null)
+            {
+                <div class="alert alert-success">@ViewBag.succ</div>
+            }
+
+<form asp-action="CreateAppraisal" asp-controller="Home">
+    <section class="vh-100 gradient-custom  ">
+        <div class="container-fluid py-5 h-100 " "bg-image"
+             style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp'); height: 100%">
+            <div class="row justify-content-center align-items-center h-70">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">Appraisal Form</h3>
+                            <form asp-action="CreateAppraisal" asp-controller="Home" method="post">
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <select asp-for="AppraisalStatus" class="form-control form-control-lg">
+                                                <option value="1" disabled>Status</option>
+                                                <option value="New">New</option>
+                                                <option value="Created">Created</option>
+                                                <option value="Self Rated">Self Rated</option>
+                                                <option value="Rated">Rated</option>
+                                                <option value="Completed">Completed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline col-md-6 mb-4">
+                                        <select class="form-control form-control-lg" multiple asp-for="comps" asp-items="Html.GetEnumSelectList<TechCompetency>()"></select>
+                                        <label class="form-check-label" asp-for="comps">Competencies</label>
+                                        <span asp-validation-for="comps" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+
+                                            @{
+                                                if (ViewBag.Emp != null)
+                                                {
+                                                    <label for="Employee ID" asp-for="EmployeeID">Employee ID</label>
+                                                    <select class="form-control" asp-for="EmployeeID">
+
+                                                        @foreach (var k in ViewBag.Emp)
+                                                        {
+                                                            <option value="@k.EID">@k.Name</option>
+                                                        }
+
+                                                    </select>
+                                                }
+                                            }
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input asp-for="Objectives" class="form-control form-control-lg" />
+                                            <label asp-for="Objectives" for="ManageerCo"></label>
+                                            <span asp-validation-for="Objectives" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-2 text-center">
+                                    <input class="btn btn-success btn-lg" type="submit" value="Submit" />
+                                    <input class="btn btn-success btn-lg" type="reset" value="Reset" />
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
