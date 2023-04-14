@@ -87,8 +87,21 @@ namespace EmployeeAppraisal.Controllers
 
         public IActionResult Welcome()
         {
+            //getting the userid
+            Employee user = _emp.Employee.Where(m => m.Email == User.Claims.ToList()[1].Value).FirstOrDefault();
+
             ViewBag.app = _emp.createappraisals.Where(m => m.AppraisalStatus == "New").ToList();
              ViewBag.data =_emp.Employee.ToList();
+
+            ViewBag.pen = _emp.createappraisals.Where(m => m.AppraisalStatus == "New").ToList();
+
+            //for the employee he can see only his appraisals
+
+            //appraisal  having new status
+            List<createappraisal> ca= _emp.createappraisals.Where(m => m.EmployeeID == user.EID && m.AppraisalStatus == "New").ToList();
+            List<createappraisal> pa = _emp.createappraisals.Where(m => m.EmployeeID == user.EID && m.AppraisalStatus == "Created").ToList();
+            ViewBag.cr = pa;
+            ViewBag.emp = ca;
             return View();
         }
 
@@ -169,7 +182,9 @@ namespace EmployeeAppraisal.Controllers
             createappraisal ca = new createappraisal();
             var currentUserID = _emp.Employee.Where(m => m.Email == User.Claims.ToList()[1].Value).FirstOrDefault();
 
-            ViewBag.Emp = _emp.Employee.Where(m => m.MID == currentUserID.EID);
+           var k = _emp.Employee.Where(m => m.MID == currentUserID.EID).ToList();
+
+            ViewBag.Emp = k;
 
 
 
@@ -222,6 +237,39 @@ namespace EmployeeAppraisal.Controllers
 
         }
 
+        //action when Employee click on the their appraisal
+        public IActionResult appdetails(int id)
+        {
+
+            ViewBag.emp = _emp.createappraisals.Where(m => m.AppraisalID == id).FirstOrDefault();
+
+            Appraisal fm = new Appraisal();
+            return View(fm);
+        }
+
+        [HttpPost]
+        public IActionResult appdetails(Appraisal ap)
+        {
+            _emp.Appraisal.Add(new Appraisal()
+            {
+                Objectives = ap.Objectives,
+                AppraisalID =ap.AppraisalID,
+                EmployeeComments =ap.EmployeeComments,
+                EmployeeRating =ap.EmployeeRating,
+                Competency ="no",
+                EmployeeID =ap.EmployeeID,
+                ManagerComments = "no comment",
+                ManagerRating = "0"
+
+            });
+
+    var k=            _emp.createappraisals.Where(m => m.AppraisalID == int.Parse(ap.AppraisalID)).FirstOrDefault();
+
+            k.AppraisalStatus = "Created";
+
+            _emp.SaveChanges();
+            return RedirectToAction("welcome");
+        }
 
     }
 }

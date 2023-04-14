@@ -36,11 +36,6 @@
                 </li>
 
                 <li class="nav-item active ">
-
-                    <a class="nav-link font-weight-bold text" asp-action="CreateAppraisal">Add Appraisal </a>
-                </li>
-
-                <li class="nav-item active ">
                     <a class="nav-link font-weight-bold text" asp-action="AppraiselForm">AppraisalDetails</a>
                 </li>
 
@@ -49,8 +44,11 @@
             @if (User.Claims.ToList()[2].Value == "Manager")
             {
 
+                
+                <li class="nav-item active ">
 
-
+                    <a class="nav-link font-weight-bold text" asp-action="CreateAppraisal">Add Appraisal </a>
+                </li>
 
             }
 
@@ -138,17 +136,46 @@
         <div class="card" style="width: 30rem; height:max-content; background-color:moccasin">
             <div class="form-group">
                 <h5 class="card-title">New Appraisal</h5>
-                @if (ViewBag.app != null)
+                @if (User.Claims.ToList()[2].Value == "Manager")
                 {
-                    foreach (var item in ViewBag.app)
+
+
+
+                    @if (ViewBag.app != null)
                     {
-                        <p> You created One Appraisal for <b>Employee Id @item.EmployeeID</b> <a > know more</a> </p>
+                        foreach (var item in ViewBag.app)
+                        {
+                            <p> You created One Appraisal for <b>Employee Id @item.EmployeeID</b> <a> know more</a> </p>
+                        }
                     }
+                    else
+                    {
+                        <p>No appraisal exists..</p>
+                    }
+
                 }
-                else
+
+
+
+                @* new apprasial for the employee*@
+                @if (User.Claims.ToList()[2].Value != "HR" && User.Claims.ToList()[2].Value != "Manager")
                 {
-                    <p>No appraisal exists..</p>
+                    if (ViewBag.emp != null)
+                    {
+
+                        foreach (var item in ViewBag.emp)
+                        {
+                            <p> You Manager has created One Appraisal for <b>Employee Id @item.EmployeeID</b> <a asp-action="appdetails" asp-controller="Home" asp-route-id="@item.AppraisalID"> know more</a> </p>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>Np Appraisal Form Here</p>
+                    }
+
                 }
+
                 @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
             </div>
         </div>
@@ -168,7 +195,43 @@
         <div class="card" style="width: 30rem; height:max-content; background-color:dimgray;">
             <div class="form-group">
                 <h5 class="card-title">Pending Appraisal</h5>
-                <p class="card-text"><a href="#">Clcik Here</a></p>
+
+                @if (User.Claims.ToList()[2].Value == "Manager")
+                {
+
+
+
+                    @if (ViewBag.pen != null)
+                    {
+                        foreach (var item in ViewBag.pen)
+                        {
+                            <p>  <b>Employee Id @item.EmployeeID</b> has submitted one appraisal form <a> know more</a> </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No appraisal exists..</p>
+                    }
+
+                }
+
+                @if (User.Claims.ToList()[2].Value != "HR" && User.Claims.ToList()[2].Value != "Manager")
+                {
+                    if (ViewBag.cr != null)
+                    {
+
+                        foreach (var item in ViewBag.cr)
+                        {
+                            <p> You have and pending Appraisal for <b>Employee Id @item.EmployeeID</b> <a asp-action="appdetails" asp-controller="Home" asp-route-id="@item.AppraisalID"> know more</a> </p>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>No pending Appraisal Form Here</p>
+                    }
+
+                }
                 @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
             </div>
         </div>

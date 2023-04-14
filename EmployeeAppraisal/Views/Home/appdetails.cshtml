@@ -1,0 +1,131 @@
+﻿@model Appraisal
+
+
+@{
+    if (ViewBag.emp != null)
+    {
+
+        <h4 class="container mt-4 text-center">My Appraisal Form</h4>
+
+        <div class="container shadow-lg border border-bottom mt-4">
+
+            <label>Appraisal Id</label>
+            <h6>@ViewBag.emp.AppraisalID</h6>
+            <hr />
+
+
+            <label>Objectives</label>
+            <h6>@ViewBag.emp.Objectives</h6>
+            <hr />
+
+
+            <label>Manager Id</label>
+            <h6>@ViewBag.emp.ManagerID</h6>
+            <hr />
+
+
+        </div>
+
+
+
+        <section class="vh-50 gradient-custom">
+
+            <div class="container-fluid py-5 h-60 " "bg-image"
+                 style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+            height: 100%">
+                <div class="row justify-content-center align-items-center h-80">
+                    <div class="col-12 col-lg-9 col-xl-7">
+                        <div class="card shadow-2-strong card-registration" style="border-radius: 15px" ;>
+                            @*<img src="~/images/ap2.png" class="rounded float-left" width="854px" height="160px" alt="Image not Found">*@
+                            <div class="card-body p-4 p-md-5 ">
+                                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center">Appraisal Details</h3>
+                                <form asp-action="appdetails" asp-controller="Home" method="post">
+                                    <div class="row">
+                                        <div class="col-sm-4">                              
+
+                                            <div class="form-outline">
+                                                <input asp-for="AppraisalID" class="form-control form-control-lg" value="@ViewBag.emp.AppraisalID" readonly />
+                                                <label asp-for="AppraisalID" ></label>
+                                                <span asp-validation-for="AppraisalID" class="text-danger"></span>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-sm-4">
+
+                                            <div class="form-outline">
+                                            
+                                                <select asp-for="EmployeeRating" for="EmployeeRating" class="form-control-lg  form-control-lg">
+                                                    <option value="Default">EmployeeRating</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <span asp-validation-for="EmployeeRating" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+
+                                            <div class="form-outline">
+                                                <input asp-for="EmployeeComments" class="form-control form-control-lg" required />
+                                                <label asp-for="EmployeeComments" for="EmployeeComments" ></label>
+                                                <span asp-validation-for="EmployeeComments" class="text-danger"></span>
+                                            </div>
+
+                                        </div>                                     
+                               
+                                        
+                                        <div class="col-sm-4">
+
+                                            <div class="form-outline">
+                                             
+                                                <label  for="Objectives">Objectives</label>
+                                          <input type="text" value="@ViewBag.emp.Objectives" readonly  asp-for="Objectives"/>
+                                       
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+
+                                            <div class="form-outline">
+                                                <input asp-for="EmployeeID" class="form-control form-control-lg" value="@ViewBag.emp.EmployeeID" readonly />
+                                                <label asp-for="EmployeeID" for="EmployeeID"></label>
+                                                <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 pt-2 text-center">
+                                        <input class="btn btn-success btn-lg" type="submit" value="Submit" />
+                                        <input class="btn btn-success btn-lg" type="reset" value="Reset" />
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    }
+
+
+
+
+    @*StartTagHelperWritingScope form fro here*@
+
+}

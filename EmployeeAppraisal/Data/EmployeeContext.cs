@@ -20,5 +20,7 @@ namespace EmployeeAppraisal.Data
 
 
         public DbSet<compitency> compitencies { get; set; }
+
+        public DbSet<Appraisal> Appraisal { get; set; }
     }
 }

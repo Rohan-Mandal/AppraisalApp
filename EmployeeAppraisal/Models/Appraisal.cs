@@ -18,30 +18,45 @@ namespace EmployeeAppraisal.Models
         [DisplayName("Appraisal ID")]
         public string AppraisalID { get; set; }
 
+
         
         [Required(ErrorMessage = "Choose Valid Rating Value")]
-        [DisplayName("EmployeeRating")]
+        [DisplayName("Employee Rating")]
         public string EmployeeRating { get; set; }
 
+
+
         [Required(ErrorMessage = "Give Valid Comments")]
-        [DisplayName("EmployeeComments")]
+        [DisplayName("Employee Comments")]
         public string EmployeeComments { get; set; }
+
+
+
+
 
         [Required(ErrorMessage = "Enter Valid Rating")]
         [DisplayName("ManagerRating")]
         public string ManagerRating { get; set; }
-        [Required(ErrorMessage = "Enter Valid Comment")]
-        [DisplayName("ManagerComments")]
 
-        public string Objectives { get; set; }
-        [Required(ErrorMessage = "Enter Valid Objectives")]
+
+        [Required(ErrorMessage = "Enter Valid Comment")]
         [DisplayName("Objectives")]
 
+        public string Objectives { get; set; } 
+
+
+
+        [Required(ErrorMessage = "Enter Valid Comment")]
+        [DisplayName("ManagerComment")]
+
         public string ManagerComments { get; set; }
+
+
 
         [Required(ErrorMessage = "Choose Valid Competency")]
         [DisplayName("Competency")]
         public string Competency { get; set; } = null;
+
 
         [Required(ErrorMessage = "Enter Valid EID")]
         [DisplayName("EmployeeID")]
